@@ -67,7 +67,7 @@ def Cadastrar_passagem():
 			menu_passagem=input('Oque você deseja?\n |1| - Inserir nova passagem\n |2| - Excluir passagem\n |3| - Alterar passagem:')
 			match menu_passagem:
 				case 1:
-					print('gozar')
+					print('a')
 				case 2:
 					print('d')
 				case 3:
