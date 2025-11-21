@@ -59,47 +59,81 @@ sair=0
 
 passagem=dict(zip(['Cidade de origem','Destino','Horário','Valor'],['Divinópolis',0,0,0]))
 onibus=dict(zip(['Número','Assentos disponíveis','Data da partida (dia/mês/ano)'],[0,0,0]))
+padrao_saida = list({"Divinópolis", "Belo Horizonte", "Lagoa da Prata", "Carmo do Cajuru"})
+padrao_chegada =list({"Patrocínio", "Lagoa da Prata", "Carmo do Cajuru", "Belo Horizonte", "Divinopolis" } )
 
+Linha_onibus_padrao = [
+	{"Cidade de Saída" : padrao_saida[0], "Cidade de Chegada": padrao_chegada[0],"Horario Partida": "00:00", "Tempo de Viagem":"00:00", "Valor da Passagem":40.00}, #Divinopolis -- Patrocinio 
+	{"Cidade de Saída" : padrao_saida[0], "Cidade de Chegada": padrao_chegada[1],"Horario Partida": "00:00", "Tempo de Viagem":"00:00", "Valor da Passagem":40.00}, #Divinipolis -- Lagoa da Prata
+	{"Cidade de Saída" : padrao_saida[0], "Cidade de Chegada": padrao_chegada[2],"Horario Partida": "00:00", "Tempo de Viagem":"00:00", "Valor da Passagem":40.00}, #Divinopolis -- Carmo do Cajuru
+	{"Cidade de Saída" : padrao_saida[0], "Cidade de Chegada": padrao_chegada[3],"Horario Partida": "00:00", "Tempo de Viagem":"00:00", "Valor da Passagem":40.00}, #Divinopolis -- Belo Horizonte
+
+]
 def Cadastrar_passagem():
-	while sair == 0():
+	while True:
 		print('-'*65)
 		try:
-			menu_passagem=input('Oque você deseja?\n |1| - Inserir nova passagem\n |2| - Excluir passagem\n |3| - Alterar passagem:')
+			menu_passagem=int(input('Oque você deseja?\n||  1 - Inserir nova passagem\n||	2 - Excluir passagem\n||  3 - Alterar passagem:\n||	0 - Voltar ao Menu Principal\n'))
 			match menu_passagem:
 				case 1:
-					print('a')
+					adicionar_nova_passagem()
 				case 2:
-					print('d')
+					excluir_passagem()
 				case 3:
-					print('c')  
-				case 4:
+					alterar_passagem()
+				case 0:
 					print('Volte sempre!')
-					sair=1
+					return False
+				case _:
+					print(opcao_invalida)
 		except ValueError:
-			print(opcao_invalida)
+			print(erro_nao_inteiro)
+
+def adicionar_nova_passagem():
+	print("Adicionando...")
+
+def excluir_passagem():
+	print("Excluindo...")
+
+def alterar_passagem():
+	print("Alterando...")
 
 def Consultar_passagem():
-	cidade_partida = input("|| Digite a cidade de Saída :")
-	cidade_destino = input("|| Digite a cidade de Destino : ")
+	cidade_partida_usuario = input("|| Digite a cidade de Saída :")
+	cidade_destino_usuario = input("|| Digite a cidade de Destino : ")
 	onibus = int(input("|| Digite o numero do Ônibus: "))
 	
+def Consultar_assentos():
+	print("Assentos disponiveis : 2")
 
 
 
 print("="*75)
 print(" 	SISTEMA DE UMA EMPRESA DE TRANSPORTE DE PASSAGEIROS.")
-
+print(padrao_chegada[1])
+print(padrao_saida[0])
+print(Linha_onibus_padrao)
 while True:
 	print("-"*65)
 	try:
-		opcao_menu = int(input("||	1 - Cadastrar nova passagem\n||	2 - Consultar passagens para determinada cidade\n||	3 - Consultar assentos disponíveis\n||	4-\n||	0 - Sair\n"))
+		opcao_menu = int(input("||	1 - Exibir Tabela de Horários \n||	2 - Cadastrar nova passagem\n||	3 - Consultar passagens para determinada cidade\n||	4 - Consultar assentos disponíveis\n||	5-\n||	0 - Sair\n"))
 		match opcao_menu:
 			case 1:
-				print("Cadastrando nova passagem")
+				print("Exibindo Tabela...")
 			case 2:
-				Consultar_passagem()
+				print("Cadastrando nova passagem")
+				Cadastrar_passagem()
+				
 			case 3:
-				print("Consultando assentod x do onibus y...")
+				Consultar_passagem()
+
+			case 4:
+				Consultar_assentos()
+
+			case 0:
+				print("Finalizando sistema...")
+				quit()
+				
 			case _: 
 				print(opcao_invalida)
 	except ValueError:
